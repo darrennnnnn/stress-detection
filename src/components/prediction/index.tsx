@@ -19,7 +19,7 @@ export default function Prediction() {
         { text: string; result: string }[]
     >([]);
 
-    const api_url: string = process.env.NEXT_PUBLIC_API_URL ?? "";
+    const api_url: string = process.env.NEXT_PUBLIC_API_URL ?? "https://darrennat09.pythonanywhere.com/api/model";
 
     useEffect(() => {
         const savedPredictions = localStorage.getItem("predictions");
