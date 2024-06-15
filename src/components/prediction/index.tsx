@@ -19,7 +19,7 @@ export default function Prediction() {
         { text: string; result: string }[]
     >([]);
 
-    const api_url = process.env.NEXT_PUBLIC_API_URL
+    const api_url: string = process.env.NEXT_PUBLIC_API_URL ?? "";
 
     useEffect(() => {
         const savedPredictions = localStorage.getItem("predictions");
