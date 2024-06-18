@@ -48,13 +48,10 @@ export default function Prediction() {
             });
 
             setResult(response.data.result);
-            console.log(result);
         } catch (error) {
             console.log(error);
         }
     };
-
-    const abc = "1";
 
     return (
         <div className="w-full flex flex-col lg:flex-row justify-center items-start lg:gap-4">
@@ -82,12 +79,12 @@ export default function Prediction() {
                         </Button>
                     </div>
                 </form>
-                {abc && (
+                {result && (
                     <div className="mt-4 p-3 rounded-md shadow-sm border flex-1">
                         <h4 className="scroll-m-20 text-lg lg:text-xl font-semibold tracking-tight pb-2">
                             Prediction Result:
                         </h4>
-                        {abc === "1" ? (
+                        {result === "1" ? (
                             <p className="bg-red-400 rounded-md py-3 px-3">
                                 Stress detected in text.
                             </p>

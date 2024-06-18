@@ -12,7 +12,6 @@ export default function Navbar() {
                     </p>
                 </div>
                 <div className="flex justify-center items-center gap-5">
-                    <ModeToggle />
                     <a
                         href={
                             "https://www.kaggle.com/datasets/mexwell/stress-detection-from-social-media-articles"
@@ -28,6 +27,7 @@ export default function Navbar() {
                             />
                         </div>
                     </a>
+                    <ModeToggle />
                 </div>
             </nav>
         </div>
