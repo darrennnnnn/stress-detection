@@ -19,7 +19,9 @@ export default function Prediction() {
         { text: string; result: string }[]
     >([]);
 
-    const api_url: string = process.env.NEXT_PUBLIC_API_URL ?? "https://darrennat09.pythonanywhere.com/api/model";
+    const api_url: string =
+        process.env.NEXT_PUBLIC_API_URL ??
+        "https://darrennat09.pythonanywhere.com/api/model";
 
     useEffect(() => {
         const savedPredictions = localStorage.getItem("predictions");
@@ -52,47 +54,51 @@ export default function Prediction() {
         }
     };
 
+    const abc = "1";
+
     return (
-        <div className="w-full flex flex-col md:flex-row justify-center items-center">
-            <form
-                onSubmit={handleSubmit}
-                className="w-full md:w-6/12 pr-4 rounded-md h-[500px] flex flex-col"
-            >
-                <div className="flex-1 flex flex-col gap-2">
-                    <Textarea
-                        placeholder="Type your text here."
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        className="h-2/3"
-                    />
-                    <Button
-                        type="submit"
-                        onClick={() => {
-                            toast({
-                                description: "Text has been sent.",
-                            });
-                        }}
-                    >
-                        Send text
-                    </Button>
-                    {result !== null && (
-                        <div className="mt-4 p-4 rounded-md shadow-sm border flex-1">
-                            <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                                Prediction Result:
-                            </h4>
-                            {result === "1" ? (
-                                <p className="bg-red-400 text-white py-3 px-3">
-                                    Stress detected in text.
-                                </p>
-                            ) : (
-                                <p className="bg-green-400 text-white py-3 px-3">
-                                    No stress detected.
-                                </p>
-                            )}
-                        </div>
-                    )}
-                </div>
-            </form>
+        <div className="w-full flex flex-col lg:flex-row justify-center items-start lg:gap-4">
+            <div className="w-full lg:w-6/12 flex flex-col mb-4 lg:mb-0">
+                <form
+                    onSubmit={handleSubmit}
+                    className="w-full rounded-md flex flex-col"
+                >
+                    <div className="flex-1 flex flex-col gap-2">
+                        <Textarea
+                            placeholder="Type your text here."
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            className="h-[150px] lg:h-[300px]"
+                        />
+                        <Button
+                            type="submit"
+                            onClick={() => {
+                                toast({
+                                    description: "Text has been sent.",
+                                });
+                            }}
+                        >
+                            Send text
+                        </Button>
+                    </div>
+                </form>
+                {abc && (
+                    <div className="mt-4 p-3 rounded-md shadow-sm border flex-1">
+                        <h4 className="scroll-m-20 text-lg lg:text-xl font-semibold tracking-tight pb-2">
+                            Prediction Result:
+                        </h4>
+                        {abc === "1" ? (
+                            <p className="bg-red-400 rounded-md py-3 px-3">
+                                Stress detected in text.
+                            </p>
+                        ) : (
+                            <p className="bg-green-400 py-3 px-3">
+                                No stress detected.
+                            </p>
+                        )}
+                    </div>
+                )}
+            </div>
             <History predictions={predictions} />
         </div>
     );
