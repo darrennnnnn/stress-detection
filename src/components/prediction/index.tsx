@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import History from "../historyarea";
+import { LoaderCircle } from "lucide-react";
 
 interface Response {
     message: string;
@@ -18,6 +19,7 @@ export default function Prediction() {
     const [predictions, setPredictions] = useState<
         { text: string; result: string }[]
     >([]);
+    const [loading, setLoading] = useState(false);
 
     const api_url: string =
         process.env.NEXT_PUBLIC_API_URL ??
@@ -32,6 +34,7 @@ export default function Prediction() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const response = await axios.post(api_url, {
@@ -50,11 +53,18 @@ export default function Prediction() {
             setResult(response.data.result);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div className="w-full flex flex-col lg:flex-row justify-center items-start lg:gap-4">
+            {loading && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <LoaderCircle className="animate-spin"/>
+                </div>
+            )}
             <div className="w-full lg:w-6/12 flex flex-col mb-4 lg:mb-0">
                 <form
                     onSubmit={handleSubmit}
