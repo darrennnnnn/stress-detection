@@ -10,6 +10,7 @@ const fontSans = FontSans({
 });
 
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
     title: "Stress Detection",
@@ -37,6 +38,7 @@ export default function RootLayout({
                 >
                     {children}
                     <Toaster />
+                    <Analytics />
                 </ThemeProvider>
             </body>
         </html>
